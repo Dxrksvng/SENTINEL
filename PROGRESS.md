@@ -9,10 +9,10 @@
 ## TL;DR — current state
 
 - **Date last updated**: 2026-05-06
-- **Phase**: `1` — MVP wire-up. Engineering thread substantially closed: tracing adapter, ingest, read path, observe-mode policy decisions, audit-ready evidence export, starter policy pack, demo runbook, and an operator-surface decisions view all in place.
+- **Phase**: `1` — MVP wire-up. Engineering complete: tracing adapter, ingest, read path, observe-mode policy decisions, audit-ready evidence export with a downloadable hash-verifiable bundle straight from the operator surface, a starter policy pack mapped to public regulatory frameworks, and a Thai-and-English narration runbook.
 - **Active workstreams**: customer discovery (in parallel) + recording the first design-partner demo.
 - **Blocking decisions**: none.
-- **Next focus**: record the screen capture against the starter pack and send it to the first design partners.
+- **Next focus**: record the screen capture against the starter pack and send it to the first design partners. The recording is now the gate that closes Phase 1.
 
 ## Quick links
 
@@ -47,6 +47,7 @@ Status legend: `[ ]` not started · `[~]` in progress · `[x]` done · `[!]` blo
 - [x] Policy decisions on ingest — observe mode first
 - [x] Evidence export — bundle telemetry + decisions for an agent over a window
 - [x] Operator surface — decisions view: severity, action, agent, span, mode
+- [x] Operator surface — evidence bundle export with downloadable JSON
 
 ### Phase 1 — MVP follow-ups (customer-driven)
 
@@ -207,3 +208,13 @@ One entry per working session. The point is cadence, not detail. Detail belongs 
 - **Verified**: dashboard typecheck and production build both clean; live smoke against a fresh control plane with the starter pack installed produced decisions across all five severity tiers (CRITICAL/HIGH/MEDIUM/LOW/INFO), all six starter rule names rendered, severity-filtered URLs narrowed correctly, and the filtered-empty state appeared for an unknown agent. Backend suite remains green at 59 tests.
 - **Skipped**: cursor-driven next-page UI (the next-page cursor is surfaced as a hint but not wired to a Load-more button), span-detail drill-through, and cross-linking from a decision to the originating span. All deferred to Phase 2 once a real customer's volume justifies the UX work.
 - **Hand-off**: the engineering threads under Phase 1 have all landed. Next is the recording itself — capture the smoke and the operator surface end-to-end, run it past the demo runbook's positioning guard, and send it to the first design partners.
+
+### Session 10 — 2026-05-06 — evidence export on the operator surface
+
+- **Outcome**:
+  - The dashboard now exposes the third pillar of the demo without leaving the browser: a per-agent `/agents/<id>/evidence` page renders a hash-verifiable summary over a configurable window — format identifier, generated_at, agent metadata, span and decision counts, severity and action breakdowns, and the bundle's content_hash. The recording can now move Observe → Govern → Evidence inside one operator surface instead of cutting to a terminal.
+  - A **Download JSON** link points at the API's `/v1/evidence/bundle` endpoint with the active window query parameters, so the bytes a receiving auditor verifies are the same bytes the API served — no client-side re-serialisation in the middle.
+  - Cross-links land too: each row on the agents list gets an "Evidence →" affordance, and every decision row turns its `agent_id` into a deep link into the matching evidence page. A non-engineer can now walk from "what agents exist" to "which rules fired" to "download the bundle for this agent" with three clicks and no URL typing.
+- **Verified**: dashboard typecheck and production build clean (the new dynamic route is registered alongside `/agents` and `/decisions`); a live smoke against a fresh control plane confirmed the bundle's claimed content_hash recomputes from the downloaded JSON byte-for-byte; populated, empty-bundle, and invalid-window states all render correctly. Backend suite stays green at 59 tests.
+- **Skipped**: server-side persisted bundles, signed download URLs, and a list/retrieve view for previously generated bundles. All deferred to Phase 2 once persistence and access control become real customer requirements.
+- **Hand-off**: capture the recording. Engineering for Phase 1 is complete; the gate that closes the phase is now the demo itself.
