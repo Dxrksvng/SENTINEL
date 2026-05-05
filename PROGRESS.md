@@ -9,10 +9,10 @@
 ## TL;DR — current state
 
 - **Date last updated**: 2026-05-06
-- **Phase**: `1` — MVP wire-up. Ingest now produces policy decisions in observe mode; evidence export is next.
+- **Phase**: `1` — MVP wire-up. End-to-end read path **and** audit evidence export are in place; the first external demo is the next gate.
 - **Active workstreams**: customer discovery (in parallel) + technical end-to-end demo.
 - **Blocking decisions**: none.
-- **Next focus**: first audit-ready evidence export bundling spans + decisions over a time window.
+- **Next focus**: surface decisions on the operator surface, ship a starter policy pack, and record the first end-to-end demo against a real sample agent.
 
 ## Quick links
 
@@ -45,7 +45,7 @@ Status legend: `[ ]` not started · `[~]` in progress · `[x]` done · `[!]` blo
 - [x] Operator surface — first page rendering live data from the control plane
 - [x] Policy schema and validator — refuses malformed rules at load time
 - [x] Policy decisions on ingest — observe mode first
-- [ ] Evidence export — bundle telemetry + decisions for an agent over a window
+- [x] Evidence export — bundle telemetry + decisions for an agent over a window
 
 ### Phase 1 — MVP follow-ups (customer-driven)
 
@@ -166,3 +166,13 @@ One entry per working session. The point is cadence, not detail. Detail belongs 
 - **Verified**: full backend test suite green and expanded; lint and strict type-checks clean.
 - **Skipped**: surfacing decisions on the operator surface and adding a starter policy pack — both kept out of this session to keep the change focused on the ingest contract. They are the natural follow-ups.
 - **Hand-off**: build the first audit-ready evidence export — bundle spans + decisions for an agent over a time window into a structure an external auditor can consume.
+
+### Session 6 — 2026-05-06 — first audit-ready evidence export
+
+- **Outcome**:
+  - The control plane now generates a self-contained, time-windowed evidence bundle for a single agent, joining the spans observed in the window with the decisions that reference them.
+  - The bundle is identified by a versioned format string and stamped with a content hash an external auditor can recompute to verify integrity. Window semantics are explicit and half-open, so two adjacent windows neither overlap nor leave gaps.
+  - Agent-level metadata in the bundle is derived from the most recent in-window span — handy when an agent's version or framework changed mid-window.
+- **Verified**: full backend suite green (now 48 tests); lint and strict type-checks clean.
+- **Skipped**: persisted bundles, signed download URLs, and async generation. Phase 1 returns the bundle inline; the heavier pipeline waits for real customer scale.
+- **Hand-off**: surface decisions on the operator surface, ship a starter policy pack, and record the first end-to-end demo against a sample agent — the natural next step before the first external design-partner conversation.
