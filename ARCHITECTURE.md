@@ -28,13 +28,15 @@
        ▼
 ┌─────────────────────────────────────────────┐
 │  Operator surface                           │
-│   - agent overview                          │
-│   - policy management                       │
-│   - audit-ready exports                     │
+│   - agents observed                         │
+│   - policy decisions                        │
+│   - per-agent evidence bundle export        │
 └─────────────────────────────────────────────┘
 ```
 
 This diagram is intentionally coarse. SENTINEL has three layers — a tracing adapter on the customer side, a control plane that ingests and reasons about behaviour, and an operator surface that humans use to manage policy and produce evidence.
+
+The operator surface today walks the full demo on one screen: from the list of agents observed, to the policy decisions those agents triggered, to a downloadable evidence bundle for any agent over a chosen window. The bundle carries a content hash that an external auditor can recompute byte-for-byte from the JSON, so the chain of custody for "what the agent did and what rules fired" does not depend on trusting our infrastructure.
 
 ---
 

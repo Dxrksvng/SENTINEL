@@ -218,3 +218,13 @@ One entry per working session. The point is cadence, not detail. Detail belongs 
 - **Verified**: dashboard typecheck and production build clean (the new dynamic route is registered alongside `/agents` and `/decisions`); a live smoke against a fresh control plane confirmed the bundle's claimed content_hash recomputes from the downloaded JSON byte-for-byte; populated, empty-bundle, and invalid-window states all render correctly. Backend suite stays green at 59 tests.
 - **Skipped**: server-side persisted bundles, signed download URLs, and a list/retrieve view for previously generated bundles. All deferred to Phase 2 once persistence and access control become real customer requirements.
 - **Hand-off**: capture the recording. Engineering for Phase 1 is complete; the gate that closes the phase is now the demo itself.
+
+### Session 11 — 2026-05-06 — recording-ready bring-up
+
+- **Outcome**:
+  - Bring-up reduced to three one-liners. From a fresh checkout: `make demo-api` (control plane on `:8000` with warning-level logs and an isolated storage dir), `make build-dashboard && make serve-dashboard` (production build of the operator surface on `:3001`), and `make demo` (installs the starter policy pack and runs the BI-AGENT-shaped smoke, then prints the dashboard URLs). The recording can now drive the full demo without typing any incantations on camera.
+  - The smoke confirmed end-to-end against a running control plane: 3 spans ingested, 3 observe-mode decisions recorded against the demo policy, evidence bundle returned with a content hash that recomputed cleanly. The `make demo` summary points the eye straight from "smoke complete" into the live `/agents` and `/decisions` URLs.
+  - The public architecture overview was refreshed to match what shipped — the operator surface now explicitly lists "agents observed", "policy decisions", and "per-agent evidence bundle export", and names the content-hash chain-of-custody property auditors care about.
+- **Verified**: `make demo` exits 0 against a freshly started control plane; the printed `content_hash` recomputes byte-for-byte from the downloaded JSON; `make build-dashboard` produces a clean production build with all three dynamic routes registered. Backend suite unchanged at 59 tests.
+- **Skipped**: a single-process orchestrator that runs all three foreground processes for you. Splitting them across three terminals keeps each step visible on screen during the recording, which is the whole point.
+- **Hand-off**: the engineering and the bring-up are both ready. The remaining gate for Phase 1 is the recording itself.
