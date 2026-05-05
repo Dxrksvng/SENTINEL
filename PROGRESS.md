@@ -9,10 +9,10 @@
 ## TL;DR — current state
 
 - **Date last updated**: 2026-05-06
-- **Phase**: `1` — MVP wire-up. Demo runbook + a starter policy pack grounded in real compliance frameworks are now in place. Operator-surface decisions view is the last open Phase 1 thread.
-- **Active workstreams**: customer discovery (in parallel) + technical end-to-end demo.
+- **Phase**: `1` — MVP wire-up. Engineering thread substantially closed: tracing adapter, ingest, read path, observe-mode policy decisions, audit-ready evidence export, starter policy pack, demo runbook, and an operator-surface decisions view all in place.
+- **Active workstreams**: customer discovery (in parallel) + recording the first design-partner demo.
 - **Blocking decisions**: none.
-- **Next focus**: surface decisions on the operator surface so a non-engineer can read the same evidence the API already returns.
+- **Next focus**: record the screen capture against the starter pack and send it to the first design partners.
 
 ## Quick links
 
@@ -46,6 +46,7 @@ Status legend: `[ ]` not started · `[~]` in progress · `[x]` done · `[!]` blo
 - [x] Policy schema and validator — refuses malformed rules at load time
 - [x] Policy decisions on ingest — observe mode first
 - [x] Evidence export — bundle telemetry + decisions for an agent over a window
+- [x] Operator surface — decisions view: severity, action, agent, span, mode
 
 ### Phase 1 — MVP follow-ups (customer-driven)
 
@@ -196,3 +197,13 @@ One entry per working session. The point is cadence, not detail. Detail belongs 
 - **Verified**: starter pack tests added (now 59 backend tests total); the pack loads via the same loader the policies endpoint uses, every rule carries at least one compliance reference, and the helper script installs all six rules end-to-end against a running API.
 - **Skipped**: rules that depend on list-valued attributes (e.g. matching against `sentinel.safety.capabilities`) — they need a new policy operator and are deferred. Customer attestation, list-contains semantics, and per-tenant scoping are all still Phase 2 work.
 - **Hand-off**: build the operator-surface view of decisions so a non-engineer can read the same evidence the API already returns — the last open Phase-1 thread before the recording goes out to design partners.
+
+### Session 9 — 2026-05-06 — operator-surface decisions view
+
+- **Outcome**:
+  - The dashboard now ships a `/decisions` route that renders the same data the API exposes at `/v1/decisions`, with severity-coloured badges, an action column, agent / span / trace identifiers, and the originating policy name and reason. A non-engineer reading the page can answer "which agents tripped which rules and how recently".
+  - The page surfaces an explicit "all decisions are observe-mode: recorded, never enforced" banner when every visible decision is in observe mode, so a recorded `BLOCK` is never mistaken for an enforced one. A small filter form supports narrowing by agent, span, or severity, with a Clear affordance and an empty-state hint that points at the starter pack.
+  - Navigation links from the home page and the agents page now lead into the decisions view, so the demo can move from "what agents are observed" → "what policies fired" without typing a URL.
+- **Verified**: dashboard typecheck and production build both clean; live smoke against a fresh control plane with the starter pack installed produced decisions across all five severity tiers (CRITICAL/HIGH/MEDIUM/LOW/INFO), all six starter rule names rendered, severity-filtered URLs narrowed correctly, and the filtered-empty state appeared for an unknown agent. Backend suite remains green at 59 tests.
+- **Skipped**: cursor-driven next-page UI (the next-page cursor is surfaced as a hint but not wired to a Load-more button), span-detail drill-through, and cross-linking from a decision to the originating span. All deferred to Phase 2 once a real customer's volume justifies the UX work.
+- **Hand-off**: the engineering threads under Phase 1 have all landed. Next is the recording itself — capture the smoke and the operator surface end-to-end, run it past the demo runbook's positioning guard, and send it to the first design partners.
