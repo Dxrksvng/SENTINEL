@@ -9,10 +9,10 @@
 ## TL;DR — current state
 
 - **Date last updated**: 2026-05-06
-- **Phase**: `1` — MVP wire-up. Read path through the full stack is in place; enforcement is next.
+- **Phase**: `1` — MVP wire-up. Ingest now produces policy decisions in observe mode; evidence export is next.
 - **Active workstreams**: customer discovery (in parallel) + technical end-to-end demo.
 - **Blocking decisions**: none.
-- **Next focus**: hooking policy decisions into the ingest path; first audit-ready evidence export.
+- **Next focus**: first audit-ready evidence export bundling spans + decisions over a time window.
 
 ## Quick links
 
@@ -44,7 +44,7 @@ Status legend: `[ ]` not started · `[~]` in progress · `[x]` done · `[!]` blo
 - [x] Control-plane read path — list observed agents and recent activity
 - [x] Operator surface — first page rendering live data from the control plane
 - [x] Policy schema and validator — refuses malformed rules at load time
-- [ ] Policy decisions on ingest — observe mode first
+- [x] Policy decisions on ingest — observe mode first
 - [ ] Evidence export — bundle telemetry + decisions for an agent over a window
 
 ### Phase 1 — MVP follow-ups (customer-driven)
@@ -156,3 +156,13 @@ One entry per working session. The point is cadence, not detail. Detail belongs 
 - **Verified**: cross-links to `SAFETY.md` and `ROADMAP.md` resolve; tone matches the "calibrated claims" posture in `SAFETY.md` (no overclaim of detection).
 - **Skipped**: any change to roadmap or product copy. The research backlog is intentionally separate from the build plan.
 - **Hand-off**: resume Phase 1 work — policy decisions on the ingest path (observe mode), then first evidence export bundle.
+
+### Session 5 — 2026-05-06 — policy decisions on ingest (observe mode)
+
+- **Outcome**:
+  - Ingest path now evaluates the active policy set against every incoming span and persists matched policies as Decision records alongside the spans.
+  - Observe-mode contract is explicit: even rules whose declared action would block or escalate produce only a record; ingest behaviour is unchanged. Buggy policies fail open with a log line.
+  - The ingest response surface adds a count of matched decisions; a paginated, filterable read endpoint exposes the decision history for the operator surface and for the upcoming evidence export.
+- **Verified**: full backend test suite green and expanded; lint and strict type-checks clean.
+- **Skipped**: surfacing decisions on the operator surface and adding a starter policy pack — both kept out of this session to keep the change focused on the ingest contract. They are the natural follow-ups.
+- **Hand-off**: build the first audit-ready evidence export — bundle spans + decisions for an agent over a time window into a structure an external auditor can consume.
