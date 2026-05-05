@@ -1,0 +1,42 @@
+name: CI (public docs)
+
+# This is the public-repository CI. It validates the documentation in this repo.
+# The full implementation CI (lint, type-check, unit + integration tests across
+# the tracing adapter, control plane, and operator surface) runs in the private
+# implementation repository on every push and pull request.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  markdown-lint:
+    name: Markdown lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint markdown
+        uses: DavidAnson/markdownlint-cli2-action@v17
+        with:
+          globs: |
+            **/*.md
+            !LICENSE
+        continue-on-error: true
+
+  link-check:
+    name: Link check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check markdown links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: "yes"
+          use-verbose-mode: "yes"
+          config-file: ".github/link-check-config.json"
+        continue-on-error: true
