@@ -11,7 +11,7 @@
 | **Status** | Pre-Alpha · active development · solo founder |
 | **Stage** | Phase 1 — MVP wire-up |
 | **License** | AGPL-3.0 |
-| **Last updated** | 2026-05-05 |
+| **Last updated** | 2026-05-06 |
 | **Customers** | None yet — currently in problem-validation phase |
 | **Funding** | Self-funded |
 
@@ -156,6 +156,7 @@ Overclaiming AI safety capability is itself a safety failure — it leads operat
 | [`SECURITY.md`](./SECURITY.md) | Vulnerability disclosure policy |
 | [`CONTRIBUTING.md`](./CONTRIBUTING.md) | How (and when) to contribute |
 | [`docs/compliance/frameworks.md`](./docs/compliance/frameworks.md) | Compliance-framework mapping reference |
+| [`docs/FUTURE_AGI_RESEARCH.md`](./docs/FUTURE_AGI_RESEARCH.md) | Research backlog: agentic / frontier behaviours the data plane should be ready to carry (not current scope) |
 
 ---
 

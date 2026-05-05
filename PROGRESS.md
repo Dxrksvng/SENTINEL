@@ -8,7 +8,7 @@
 
 ## TL;DR — current state
 
-- **Date last updated**: 2026-05-05
+- **Date last updated**: 2026-05-06
 - **Phase**: `1` — MVP wire-up. Read path through the full stack is in place; enforcement is next.
 - **Active workstreams**: customer discovery (in parallel) + technical end-to-end demo.
 - **Blocking decisions**: none.
@@ -146,3 +146,13 @@ One entry per working session. The point is cadence, not detail. Detail belongs 
 - **Verified**: backend test suite expanded and green; operator surface type-checks clean and builds successfully.
 - **Skipped**: in-browser click-through smoke — flagged as a follow-up before the next external demo.
 - **Hand-off**: hook policy decisions into the ingest path next; observe mode first to keep blast radius small.
+
+### Session 4 — 2026-05-06 — long-horizon research backlog separated from current scope
+
+- **Outcome**:
+  - Published `docs/FUTURE_AGI_RESEARCH.md` — a research backlog of frontier / agentic-AI behaviours we want the data plane to be ready to carry signal for, without claiming detection capability today.
+  - Document explicitly defers detection to research-grade upstream work (Inspect AI, METR, frontier labs) and reinforces SENTINEL's Layer-2 positioning.
+  - Cross-linked from the README documentation map so the public scope stays navigable.
+- **Verified**: cross-links to `SAFETY.md` and `ROADMAP.md` resolve; tone matches the "calibrated claims" posture in `SAFETY.md` (no overclaim of detection).
+- **Skipped**: any change to roadmap or product copy. The research backlog is intentionally separate from the build plan.
+- **Hand-off**: resume Phase 1 work — policy decisions on the ingest path (observe mode), then first evidence export bundle.
