@@ -122,7 +122,7 @@ A more detailed mapping reference lives in [`docs/compliance/frameworks.md`](./d
 The cadence is real. The detail is deliberately kept high-level.
 
 - **Phase 0** (foundation) — complete. License, security/safety/contributing docs, workspace layout, CI for lint + types + tests + dependency/secret scans.
-- **Phase 1** (MVP wire-up) — in flight. Tracing adapter wired through to the control plane; first operator-surface page rendering live data; policy schema and validator landed. Next: policy decisions on the ingest path; first audit-ready evidence export.
+- **Phase 1** (MVP wire-up) — engineering thread substantially closed. Tracing adapter wired through to the control plane; first operator-surface page rendering live data; policy schema and validator landed; policy decisions are produced on the ingest path in observe mode; the first audit-ready evidence export is in place with a content hash an external auditor can recompute. A starter policy pack covering the EU AI Act risk tiers and PDPA cross-border references ships with the repo, and a Thai-and-English narration runbook is ready for the first design-partner recording. Next: render decisions on the operator surface and run the first design-partner conversations.
 
 Session-by-session progress is logged in [`PROGRESS.md`](./PROGRESS.md). The full plan lives in [`ROADMAP.md`](./ROADMAP.md).
 

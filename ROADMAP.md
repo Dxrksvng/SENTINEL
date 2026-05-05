@@ -28,15 +28,15 @@ These are intent. They will move when reality moves. Honesty over optimism.
 
 ---
 
-## Phase 1 — MVP — IN PROGRESS
+## Phase 1 — MVP — ENGINEERING SUBSTANTIALLY CLOSED
 
 **Goal**: a working end-to-end demo on a single laptop. Not production-grade. Not hosted.
 
 **Pre-condition**: a meaningful number of customer-discovery conversations completed. The interviews shape what the MVP demonstrates — not the founder's prior assumptions.
 
-Phase 1 covers: a customer-side tracing adapter; a control plane that ingests, evaluates policy, and stores telemetry; an operator surface that surfaces what the agent did and why; an audit-ready evidence export.
+Phase 1 covers: a customer-side tracing adapter; a control plane that ingests, evaluates policy, and stores telemetry; an operator surface that surfaces what the agent did and why; an audit-ready evidence export. A starter policy pack mapped to public regulatory frameworks ships with the repo, and a Thai-and-English narration runbook is in place for the first design-partner recording.
 
-**Definition of done**: a short screen-recording where a real agent in a sample workload hits a policy violation, the operator surface surfaces it, and the evidence export captures it cleanly. Recording is sent to design partners for feedback.
+**Definition of done**: a short screen-recording where a real agent in a sample workload hits a policy violation, the operator surface surfaces it, and the evidence export captures it cleanly. Recording is sent to design partners for feedback. The recording is the gate that closes this phase; the engineering threads under it have landed and the smoke runs end-to-end on a single laptop.
 
 ---
 
