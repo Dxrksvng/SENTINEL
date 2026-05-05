@@ -9,10 +9,10 @@
 ## TL;DR — current state
 
 - **Date last updated**: 2026-05-06
-- **Phase**: `1` — MVP wire-up. End-to-end smoke against a realistic multi-stage workload is now passing locally. The next gate is the operator surface + a recorded design-partner demo.
+- **Phase**: `1` — MVP wire-up. Demo runbook + a starter policy pack grounded in real compliance frameworks are now in place. Operator-surface decisions view is the last open Phase 1 thread.
 - **Active workstreams**: customer discovery (in parallel) + technical end-to-end demo.
 - **Blocking decisions**: none.
-- **Next focus**: surface decisions on the operator surface, ship a starter policy pack, and record the first end-to-end demo from the smoke for design-partner outreach.
+- **Next focus**: surface decisions on the operator surface so a non-engineer can read the same evidence the API already returns.
 
 ## Quick links
 
@@ -186,3 +186,13 @@ One entry per working session. The point is cadence, not detail. Detail belongs 
 - **Verified**: smoke script exits zero against a freshly started control plane; bundle hash recomputation matches the wire value byte-for-byte.
 - **Skipped**: provider-level instrumentation that would surface inner LLM calls as their own spans — that is Phase 2 work and outside the current Phase 1 contract.
 - **Hand-off**: render decisions on the operator surface, ship a starter policy pack inspired by what the smoke surfaced, and record the smoke as a short screen capture for outreach to the first design partners.
+
+### Session 8 — 2026-05-06 — recording-ready demo + starter policy pack
+
+- **Outcome**:
+  - The smoke gained a camera-friendly presentation mode — banners, optional ANSI colour, configurable inter-section pacing — so it doubles as the on-screen content for a 60–90 second design-partner recording.
+  - A demo runbook ships alongside it: pre-flight checklist, six chapter cues with Thai and English narration, a positioning guard that names the claims that must NOT be made on camera, and a failure table for aborting cleanly when something goes wrong.
+  - A starter policy pack lands too — six declarative observe-mode rules that cover all five EU AI Act risk tiers and one cross-cutting external-LLM-provider rule. Every rule cites the framework article it supports (EU AI Act Articles 5, 12, 14, 50, 51, 53, 55; PDPA Section 28; ISO/IEC 42001; NIST AI RMF; OECD AI Principles), reacts to a single declarative attribute the SDK exposes today, and ships with a helper script that installs the pack into a running control plane.
+- **Verified**: starter pack tests added (now 59 backend tests total); the pack loads via the same loader the policies endpoint uses, every rule carries at least one compliance reference, and the helper script installs all six rules end-to-end against a running API.
+- **Skipped**: rules that depend on list-valued attributes (e.g. matching against `sentinel.safety.capabilities`) — they need a new policy operator and are deferred. Customer attestation, list-contains semantics, and per-tenant scoping are all still Phase 2 work.
+- **Hand-off**: build the operator-surface view of decisions so a non-engineer can read the same evidence the API already returns — the last open Phase-1 thread before the recording goes out to design partners.
