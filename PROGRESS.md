@@ -9,10 +9,10 @@
 ## TL;DR — current state
 
 - **Date last updated**: 2026-05-06
-- **Phase**: `1` — MVP wire-up. End-to-end read path **and** audit evidence export are in place; the first external demo is the next gate.
+- **Phase**: `1` — MVP wire-up. End-to-end smoke against a realistic multi-stage workload is now passing locally. The next gate is the operator surface + a recorded design-partner demo.
 - **Active workstreams**: customer discovery (in parallel) + technical end-to-end demo.
 - **Blocking decisions**: none.
-- **Next focus**: surface decisions on the operator surface, ship a starter policy pack, and record the first end-to-end demo against a real sample agent.
+- **Next focus**: surface decisions on the operator surface, ship a starter policy pack, and record the first end-to-end demo from the smoke for design-partner outreach.
 
 ## Quick links
 
@@ -176,3 +176,13 @@ One entry per working session. The point is cadence, not detail. Detail belongs 
 - **Verified**: full backend suite green (now 48 tests); lint and strict type-checks clean.
 - **Skipped**: persisted bundles, signed download URLs, and async generation. Phase 1 returns the bundle inline; the heavier pipeline waits for real customer scale.
 - **Hand-off**: surface decisions on the operator surface, ship a starter policy pack, and record the first end-to-end demo against a sample agent — the natural next step before the first external design-partner conversation.
+
+### Session 7 — 2026-05-06 — end-to-end smoke against a realistic workload
+
+- **Outcome**:
+  - First true end-to-end run: a multi-stage pipeline shaped like a real consulting-AI workload (data profile → AI interpretation → story → slide plan) emits spans through the SDK, the control plane records observe-mode decisions against an installed policy, and the run is sealed with a hash-verified evidence bundle.
+  - The LLM is forced to a local provider so the smoke is free to run, repeatable, and does not move customer-shaped data off the laptop. Three back-to-back pipeline invocations completed in roughly twenty seconds and produced fifteen spans, three decisions, and a bundle whose content hash recomputed cleanly.
+  - The smoke script doubles as a design-partner demo: a single command, no cloud dependencies, exits zero on success.
+- **Verified**: smoke script exits zero against a freshly started control plane; bundle hash recomputation matches the wire value byte-for-byte.
+- **Skipped**: provider-level instrumentation that would surface inner LLM calls as their own spans — that is Phase 2 work and outside the current Phase 1 contract.
+- **Hand-off**: render decisions on the operator surface, ship a starter policy pack inspired by what the smoke surfaced, and record the smoke as a short screen capture for outreach to the first design partners.
