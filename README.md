@@ -10,23 +10,6 @@
 
 > Public documentation and planning. The runtime engine, policy system and tracing adapter are maintained in a private repository during pre-alpha.
 
-## Tech stack
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=py&perline=10" alt="Tech stack" />
-</p>
-
-## What it does
-
-```mermaid
-flowchart LR
-    A(["AI agents"]) --> O["1. Observe\nportable open-standard trace"]
-    O --> G["2. Govern\nruntime policy\nobserve mode first"]
-    G --> E["3. Evidence\naudit-ready exports"]
-    E --> C(["Compliance and risk officers"])
-    E -.-> F["NIST AI RMF, ISO/IEC 42001,\nEU AI Act, OWASP LLM Top 10,\nMITRE ATLAS, OECD, PDPA"]
-```
-
 ---
 
 > **Runtime governance for AI agents in production.**
