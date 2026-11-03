@@ -1,4 +1,33 @@
+<div align="center">
+
 # SENTINEL
+
+**Runtime governance for AI agents in production.**
+
+![Status pre-alpha](https://img.shields.io/badge/Status-pre--alpha-F59E0B?style=for-the-badge) ![License AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue?style=for-the-badge) ![Stage Phase 1 MVP](https://img.shields.io/badge/Stage-Phase_1_MVP-7C3AED?style=for-the-badge) ![Customers none yet](https://img.shields.io/badge/Customers-none_yet-lightgrey?style=for-the-badge)
+
+</div>
+
+> Public documentation and planning. The runtime engine, policy system and tracing adapter are maintained in a private repository during pre-alpha.
+
+## Tech stack
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=py&perline=10" alt="Tech stack" />
+</p>
+
+## What it does
+
+```mermaid
+flowchart LR
+    A(["AI agents"]) --> O["1. Observe\nportable open-standard trace"]
+    O --> G["2. Govern\nruntime policy\nobserve mode first"]
+    G --> E["3. Evidence\naudit-ready exports"]
+    E --> C(["Compliance and risk officers"])
+    E -.-> F["NIST AI RMF, ISO/IEC 42001,\nEU AI Act, OWASP LLM Top 10,\nMITRE ATLAS, OECD, PDPA"]
+```
+
+---
 
 > **Runtime governance for AI agents in production.**
 >
