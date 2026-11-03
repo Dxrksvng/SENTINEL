@@ -1,4 +1,16 @@
+<div align="center">
+
 # SENTINEL
+
+**Runtime governance for AI agents in production.**
+
+![Status pre-alpha](https://img.shields.io/badge/Status-pre--alpha-F59E0B?style=for-the-badge) ![License AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue?style=for-the-badge) ![Stage Phase 1 MVP](https://img.shields.io/badge/Stage-Phase_1_MVP-7C3AED?style=for-the-badge) ![Customers none yet](https://img.shields.io/badge/Customers-none_yet-lightgrey?style=for-the-badge)
+
+</div>
+
+> Public documentation and planning. The runtime engine, policy system and tracing adapter are maintained in a private repository during pre-alpha.
+
+---
 
 > **Runtime governance for AI agents in production.**
 >
